@@ -1,4 +1,4 @@
-# React Food Order
+# Food Order
 
 A simple project to practice React. It’s a food ordering app where you can browse meals, add them to a cart, and check out with a form.
 
