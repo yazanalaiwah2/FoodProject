@@ -1,0 +1,11 @@
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.controlRow {
+  display: flex;
+  justify-content: flex-start;
+  gap: 1rem;
+}
