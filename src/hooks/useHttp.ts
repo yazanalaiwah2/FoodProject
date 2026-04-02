@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState, useRef } from "react";
 
 type HttpConfig = {
   method?: string;
@@ -27,6 +27,8 @@ export const useHttp = <T>(
   config?: HttpConfig,
   initialData?: T,
 ) => {
+  const configRef = useRef(config);
+
   const [data, setData] = useState<T | undefined>(initialData);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | undefined>();
@@ -40,7 +42,7 @@ export const useHttp = <T>(
       setIsLoading(true);
       try {
         const resData = await sendHttpRequest<T>(url, {
-          ...config,
+          ...configRef.current,
           body: requestData,
         });
         setData(resData);
@@ -53,14 +55,18 @@ export const useHttp = <T>(
       }
       setIsLoading(false);
     },
-    [url, config],
+    [url],
   );
 
   useEffect(() => {
-    if ((config && (config.method === "GET" || !config.method)) || !config) {
+    if (
+      (configRef.current &&
+        (configRef.current.method === "GET" || !configRef.current.method)) ||
+      !configRef.current
+    ) {
       sendRequest();
     }
-  }, [sendRequest, config]);
+  }, [sendRequest]);
 
   return {
     data,
