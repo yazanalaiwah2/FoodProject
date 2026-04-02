@@ -4,14 +4,7 @@ import { Button } from "../UI/Button/Button";
 import { CartContext } from "../../store/CartContext";
 import { API_URL } from "../../config";
 import classes from "./MealItem.module.css";
-
-type Meal = {
-  id: string;
-  name: string;
-  price: number;
-  description: string;
-  image: string;
-};
+import { Meal } from "../../types/meal";
 
 type MealItemProps = {
   meal: Meal;

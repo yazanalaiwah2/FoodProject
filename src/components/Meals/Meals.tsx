@@ -3,14 +3,7 @@ import { useHttp } from "../../hooks/useHttp";
 import { Error } from "../UI/Error/Error";
 import { API_URL } from "../../config";
 import classes from "./Meals.module.css";
-
-type Meal = {
-  id: string;
-  name: string;
-  price: number;
-  description: string;
-  image: string;
-};
+import { Meal } from "../../types/meal";
 
 const requestConfig = {};
 
