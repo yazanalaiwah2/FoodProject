@@ -18,8 +18,11 @@ export const Modal = ({
   const refDialog = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
-    if (open) refDialog.current?.showModal();
-    return () => refDialog.current?.close();
+    const dialog = refDialog.current;
+
+    if (open) dialog?.showModal();
+
+    return () => dialog?.close();
   }, [open]);
 
   return createPortal(
